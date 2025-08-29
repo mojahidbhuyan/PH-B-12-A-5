@@ -10,3 +10,26 @@ getElement("hotline-number").addEventListener("click", function (e) {
     getElement("life").innerText = currentLife;
   }
 });
+
+getElement("hotline-number").addEventListener("click", function (e) {
+  if (e.target.className.includes("call-btn")) {
+    const lastCoin = getElement("coin").innerText;
+    const currentCoin = Number(lastCoin) - 20;
+    const callBtn = e.target;
+    const serviceName =
+      callBtn.parentNode.parentNode.parentNode.children[1].children[0]
+        .innerText;
+    const serviceNumber =
+      callBtn.parentNode.parentNode.parentNode.children[2].innerText;
+    if (currentCoin >= 0) {
+      getElement("coin").innerText = currentCoin;
+      alert(
+        `Connecting you now. \nCalling \n${serviceName} :  ${serviceNumber}`
+      );
+    } else {
+      alert(
+        "আপনার পর্যাপ্ত কয়েন নেই! \nকল করতে আরও কয়েন সংগ্রহ করুন। \nNot enough coins! \nPlease add more coins to make this call."
+      );
+    }
+  }
+});
